@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "rain-or-shine",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
