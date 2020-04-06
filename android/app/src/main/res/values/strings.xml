@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Rain or Shine</string>
+    <string name="title_activity_main">Rain or Shine</string>
+    <string name="package_name">com.socialconzdigital.rainorshine</string>
+    <string name="custom_url_scheme">com.socialconzdigital.rainorshine</string>
+</resources>

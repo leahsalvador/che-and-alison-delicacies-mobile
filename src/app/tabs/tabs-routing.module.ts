@@ -8,45 +8,65 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'stores-tab',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../stores-tab/stores-tab.module').then(m => m.StoresTabPageModule)
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'game-tab',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../game-tab/game-tab.module').then(m => m.GameTabPageModule)
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'home-tab',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../home-tab/home-tab.module').then(m => m.HomeTabPageModule)
+          }
+        ]
+      },
+      {
+        path: 'about-tab',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../about-tab/about-tab.module').then(m => m.AboutTabPageModule)
+          }
+        ]
+      },
+      {
+        path: 'contact-us-tab',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../contact-us-tab/contact-us-tab.module').then(m => m.ContactUsTabPageModule)
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/home-tab',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/home-tab',
     pathMatch: 'full'
   }
 ];
