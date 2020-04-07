@@ -9,7 +9,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "resource": "cordova-res android --skip-config --copy && cordova-res ios --skip-config --copy",
+    "build:android": "ionic cap run android",
+    "sync:android": "ionic cap sync android"
   },
   "private": true,
   "resolutions": {
