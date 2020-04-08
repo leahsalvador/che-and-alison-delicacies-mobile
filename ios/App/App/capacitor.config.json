@@ -1,1 +1,8 @@
-{}
+{
+  "appId": "com.socialconzdigital.rainorshine",
+  "appName": "Rain or Shine",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
