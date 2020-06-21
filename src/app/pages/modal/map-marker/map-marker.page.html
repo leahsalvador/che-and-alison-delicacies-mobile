@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Set Location
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-toolbar>
+  <ion-button class="ion-margin" color="danger" size="large" expand="full" (click)="reload()">Reload Map</ion-button>
+</ion-toolbar>
+<ion-content>
+  <app-map apiKey="AIzaSyAHfGxVPOizWxregN9GFYoSwns7Jcm4LF8"></app-map>
+</ion-content>
+
+<ion-footer>
+  <ion-button class="ion-margin" color="danger" size="large" expand="full" (click)="markLocation()">Mark Location</ion-button>
+</ion-footer>

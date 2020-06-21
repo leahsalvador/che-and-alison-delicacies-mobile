@@ -1,0 +1,80 @@
+<ion-header background="primary">
+  <ion-toolbar>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Account
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngIf="isCustomer">
+      <ion-label class="ion-text-wrap">
+      Reward Points: <span style="font-weight: 900; color: #2dd36f;">{{this.authService.total_rp}}</span>
+      </ion-label>
+    </ion-item>
+      
+    <ion-list-header lines="inset">
+      <ion-label>Personal Information</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+      Name: {{this.authService.userData.user_display_name}}
+      </ion-label>
+    </ion-item>
+    
+    <ion-item *ngIf="isCustomer">
+      <ion-label class="ion-text-wrap">
+      Contact Number: {{this.authService.userData.customer.contact_number}}
+      </ion-label>
+    </ion-item>
+    
+    <ion-item *ngIf="isCustomer">
+      <ion-label class="ion-text-wrap">
+      Address: {{this.authService.userData.customer.address}}
+      </ion-label>
+    </ion-item>
+    
+    <ion-item *ngIf="isCustomer">
+      <ion-label class="ion-text-wrap">
+      City/Municipality: {{this.authService.userData.customer.citymunDesc}}
+      </ion-label>
+    </ion-item>
+    
+    <ion-item *ngIf="isCustomer">
+      <ion-label class="ion-text-wrap">
+      Barangay: {{this.authService.userData.customer.brgyDesc}}
+      </ion-label>
+    </ion-item>
+    
+    <ion-item button (click)="logout()">
+      <ion-label color="danger">
+        Logout
+      </ion-label>
+      <ion-icon name="exit-outline" slot="end"></ion-icon>
+    </ion-item>
+    
+    <ion-list-header liesn="inset">
+      <ion-label>App</ion-label>
+    </ion-list-header>
+    <ion-item button (click)="showCompanyProfile()">
+      <ion-label>
+        About Che and Ali
+      </ion-label>
+      <ion-icon name="information-circle-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item button (click)="showTerms()">
+      <ion-label>
+        Terms and Condition
+      </ion-label>
+      <ion-icon name="information-circle-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item button (click)="showPrivacy()">
+      <ion-label>
+        Privacy Policy
+      </ion-label>
+      <ion-icon name="information-circle-outline" slot="end"></ion-icon>
+    </ion-item>
+  
+  </ion-list>
+</ion-content>

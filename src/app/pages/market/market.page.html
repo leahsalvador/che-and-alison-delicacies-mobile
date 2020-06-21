@@ -1,0 +1,46 @@
+<ion-header background="primary">
+  <ion-toolbar>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Palengke+ PH
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-padding-start ion-padding-end" size="12">
+        <ion-searchbar color="light" placeholder="Search palengke"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>
+</ion-header>
+<ion-content padding [fullscreen]="true">
+  
+  <ion-grid class="ion-margin-top">
+    <ion-row>
+      <ion-col *ngFor="let market of markets | slice:0:slice; let i=index" class="ion-padding-start ion-padding-end ion-margin-bottom" size="12" size-lg="4">
+        <ion-card class="ion-activatable ripple-parent ion-no-margin ion-padding-top-4 ion-padding-bottom-4 col-btn">
+          <ion-row>
+            <ion-col size="12" class="ion-no-padding">
+              <ion-img [src]="market.image" class="market-img"></ion-img>
+            </ion-col>
+            <ion-col size="10" class="ion-padding-end">
+              <ion-card-header>
+                <ion-card-title>{{ market.name }}</ion-card-title>
+                <ion-card-subtitle>{{ market.address }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-card-title class="total-seller-p"><span class="total-seller">{{ market.totalSellers }}</span> Sellers</ion-card-title>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-card>
+      </ion-col>  
+      
+      <ion-infinite-scroll (ionInfinite)="loadMarket($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading Palengkes..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-row>
+  </ion-grid>
+</ion-content>

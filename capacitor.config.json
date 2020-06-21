@@ -1,6 +1,6 @@
 {
-  "appId": "com.socialconzdigital.rainorshine",
-  "appName": "Rain or Shine",
+  "appId": "com.cheandalison.app",
+  "appName": "Che and Alison",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

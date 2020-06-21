@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { NavController } from '@ionic/angular';
+import {
+  Router, ActivationStart, RouterOutlet
+} from '@angular/router';
+import {
+  Component, ViewChild, OnInit
+} from '@angular/core';
 //API
 import {
   Plugins,
@@ -7,42 +14,50 @@ import {
 
 // Events (iOS only)
 window.addEventListener('statusTap', function () {
-  console.log("statusbar tapped");
+  console.log('statusbar tapped');
 });
 
-const { StatusBar } = Plugins;
+const {
+  StatusBar
+} = Plugins;
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {
+export class TabsPage{
 
-  constructor() {
-  }
-  isStatusBarLight = true
+  //@ViewChild(RouterOutlet, {static: false}) outlet: RouterOutlet;
+  isCustomer = false;
 
-  changeStatusBar() {
+  constructor(private router: Router, private navCtrl: NavController, private nativeStorage: NativeStorage) {
     Plugins.StatusBar.setBackgroundColor({
-      color: '#172a65'
+      color: '#fa0002'
     });
     Plugins.StatusBar.setStyle({
-      style: this.isStatusBarLight ? StatusBarStyle.Dark : StatusBarStyle.Light
+      style: StatusBarStyle.Dark
     });
-    this.isStatusBarLight = !this.isStatusBarLight;
 
-    // Display content under transparent status bar (Android only)
-    /*Plugins.StatusBar.setOverlaysWebView({
-      overlay: true
-    });*/
+    this.nativeStorage.getItem('user_data').then(
+      data => {
+        const userData = data;
+        console.log('User role ID ' + userData.user_role_id);
+        if (userData.user_role_id == 5) {
+          this.isCustomer = true;
+          this.router.navigateByUrl('tabs/tabs/home');
+        } else {
+          this.router.navigateByUrl('tabs/tabs/order');
+        }
+      },
+      error => console.error(error)
+    );
   }
-
-  hideStatusBar() {
-    Plugins.StatusBar.hide();
-  }
-
-  showStatusBar() {
-    Plugins.StatusBar.show();
+  ngOnInit() {
+    /*this.router.events.subscribe(e => {
+      if (e instanceof ActivationStart && e.snapshot.outlet === 'tabcontent') {
+        this.outlet.deactivate();
+      }
+    });//*/
   }
 }

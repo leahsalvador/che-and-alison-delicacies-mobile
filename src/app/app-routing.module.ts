@@ -1,58 +1,65 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'tabs',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'product-catalog',
-    loadChildren: () => import('./pages/home/product-catalog/product-catalog.module').then( m => m.ProductCatalogPageModule)
+    path: 'product-search',
+    loadChildren: () => import('./pages/product-search/product-search.module').then( m => m.ProductSearchPageModule)
   },
   {
-    path: 'color-collections',
-    loadChildren: () => import('./pages/home/color-collections/color-collections.module').then( m => m.ColorCollectionsPageModule)
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'choose-paint',
-    loadChildren: () => import('./pages/home/choose-paint/choose-paint.module').then( m => m.ChoosePaintPageModule)
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'designer-scheme',
-    loadChildren: () => import('./pages/home/designer-scheme/designer-scheme.module').then( m => m.DesignerSchemePageModule)
+    path: 'order',
+    loadChildren: () => import('./pages/order/order.module').then( m => m.OrderPageModule)
   },
   {
-    path: 'specs-writer-guide',
-    loadChildren: () => import('./pages/home/specs-writer-guide/specs-writer-guide.module').then( m => m.SpecsWriterGuidePageModule)
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: 'paint-calculator',
-    loadChildren: () => import('./pages/home/paint-calculator/paint-calculator.module').then( m => m.PaintCalculatorPageModule)
+    path: 'product-detail',
+    loadChildren: () => import('./pages/product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
   },
   {
-    path: 'color-capture',
-    loadChildren: () => import('./pages/home/color-capture/color-capture.module').then( m => m.ColorCapturePageModule)
+    path: 'order-products',
+    loadChildren: () => import('./pages/modal/order-products/order-products.module').then( m => m.OrderProductsPageModule)
   },
   {
-    path: 'professional-painting-service',
-    loadChildren: () => import('./pages/contact-us/professional-painting-service/professional-painting-service.module').then( m => m.ProfessionalPaintingServicePageModule)
+    path: 'checkout',
+    loadChildren: () => import('./pages/modal/checkout/checkout.module').then( m => m.CheckoutPageModule)
   },
   {
-    path: 'general-inquiry',
-    loadChildren: () => import('./pages/contact-us/general-inquiry/general-inquiry.module').then( m => m.GeneralInquiryPageModule)
+    path: 'map-marker',
+    loadChildren: () => import('./pages/modal/map-marker/map-marker.module').then( m => m.MapMarkerPageModule)
   },
   {
-    path: 'faq',
-    loadChildren: () => import('./pages/contact-us/faq/faq.module').then( m => m.FaqPageModule)
+    path: 'reward-points-history',
+    loadChildren: () => import('./core/pages/reward-points-history/reward-points-history.module').then( m => m.RewardPointsHistoryPageModule)
   },
   {
-    path: 'disclaimer',
-    loadChildren: () => import('./pages/contact-us/disclaimer/disclaimer.module').then( m => m.DisclaimerPageModule)
+    path: 'company-profile',
+    loadChildren: () => import('./core/pages/company-profile/company-profile.module').then( m => m.CompanyProfilePageModule)
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('./pages/terms/terms.module').then( m => m.TermsPageModule)
   },
   {
     path: 'policy',
-    loadChildren: () => import('./pages/contact-us/policy/policy.module').then( m => m.PolicyPageModule)
+    loadChildren: () => import('./pages/policy/policy.module').then( m => m.PolicyPageModule)
   }
 ];
 @NgModule({

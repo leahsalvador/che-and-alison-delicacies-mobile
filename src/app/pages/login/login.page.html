@@ -1,0 +1,38 @@
+<ion-content  class="transparent-header ion-padding" [ngStyle]="{'background-image': 'url(' + backgroundImage +')'}" [fullscreen]="true">
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+  <div class="ion-padding ion-margin-top">
+    <ion-row>
+      <ion-col>
+        <img class="logo" src="../../../assets/icon/favicon.png" />
+        <p>Sign In</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list inset class="no-border">
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input type="text" formControlName="username"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="login-button" type="submit">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div (click)="register()">
+          <span>Or create a new account.</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</form>
+</ion-content>

@@ -1,3 +1,5 @@
+import { InboxPageModule } from './../inbox/inbox.module';
+import { CartPageModule } from './../modal/cart/cart.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
@@ -8,65 +10,65 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'stores-tab',
+        path: 'order',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab-pages/stores-tab/stores-tab.module').then(m => m.StoresTabPageModule)
+              import('../order/order.module').then(m => m.OrderPageModule)
           }
         ]
       },
       {
-        path: 'game-tab',
+        path: 'home',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab-pages/game-tab/game-tab.module').then(m => m.GameTabPageModule)
+              import('../home/home.module').then(m => m.HomePageModule)
           }
         ]
       },
       {
-        path: 'home-tab',
+        path: 'account',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab-pages/home-tab/home-tab.module').then(m => m.HomeTabPageModule)
+              import('../account/account.module').then(m => m.AccountPageModule)
           }
         ]
       },
       {
-        path: 'about-tab',
+        path: 'inbox',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab-pages/about-tab/about-tab.module').then(m => m.AboutTabPageModule)
+              import('../inbox/inbox.module').then(m => m.InboxPageModule)
           }
         ]
       },
       {
-        path: 'contact-us-tab',
+        path: 'cart',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab-pages/contact-us-tab/contact-us-tab.module').then(m => m.ContactUsTabPageModule)
+              import('../modal/cart/cart.module').then(m => m.CartPageModule)
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/home-tab',
+        redirectTo: 'tabs/tabs/home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/home-tab',
+    redirectTo: 'tabs/home',
     pathMatch: 'full'
   }
 ];

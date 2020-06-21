@@ -6,6 +6,10 @@ export const environment = {
   production: false
 };
 
+export const SERVER = 'http://192.168.22.3:8080/che-and-alison-delicacies-web/';
+export const API_SERVER = `${SERVER}api/`;
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

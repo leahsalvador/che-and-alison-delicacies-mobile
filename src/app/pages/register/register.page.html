@@ -1,0 +1,76 @@
+<ion-content  class="transparent-header ion-padding" [fullscreen]="true">
+  <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+  <div class="ion-padding ion-margin-top">
+    <ion-row>
+      <ion-col>
+        <img class="logo" src="../../../assets/icon/favicon.png" />
+        <h1>Sign Up</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list inset class="no-border">
+          <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input type="text" formControlName="first_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input type="text" formControlName="last_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Contact Number</ion-label>
+            <ion-input type="text" formControlName="contact_number"></ion-input>
+          </ion-item>
+                  
+          <ion-item>
+            <ion-label>City/Municipality</ion-label>
+            <ion-select class="customSelect"cancelText="Cancel" okText="Select" (ionChange)="updateBarangayList($event)" formControlName="citymunCode">
+              <ion-select-option *ngFor="let city of this.locationService.cities" value="{{city.citymunCode}}">{{city.citymunDesc}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Barangay</ion-label>
+            <ion-select class="customSelect" cancelText="Cancel" okText="Select" formControlName="brgyCode">
+              <ion-select-option *ngFor="let brgy of this.locationService.brgys" value="{{brgy.brgyCode}}">{{brgy.brgyDesc}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Address</ion-label>
+            <ion-textarea rows="3" cols="20" formControlName="address" placeholder="Enter your address here..."></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input type="text" formControlName="username"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>
+          <p>By signing up you agree to our <ion-text color="primary" (click)="showTerms()">Terms and Conditions</ion-text> and <ion-text color="primary" (click)="showPrivacy()">Privacy Policy</ion-text></p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="login-button"  type="submit">Register</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div (click)="login()">
+          <span>Go back to login page</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</form>
+</ion-content>

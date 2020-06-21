@@ -1,0 +1,69 @@
+<ion-header background="primary">
+  <ion-toolbar>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Che & Alison Delicacies 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<!--<ion-toolbar mode="md" class="category-container">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="8">
+        <div class="category">
+          <ion-button  *ngFor="let category of this.productService.categories" 
+            class="ion-margin-bottom ion-margin-top" 
+            shape="round" 
+            [color]="category.active ? 'primary' : 'light'"
+            (click)="selectProductCategory(category)">{{category.category}}</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>-->
+<ion-content padding [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-grid class="ion-margin-top">
+    <ion-row *ngFor="let category of this.productService.categories">
+      <ion-col class="ion-padding-start ion-padding-end ion-margin-bottom" size="12" size-lg="4">
+        <h3>{{category.category}}</h3>
+      </ion-col>
+      <ion-col *ngFor="let product of category.products | slice:0:slice; let i=index" 
+      class="ion-padding-start ion-padding-end ion-margin-bottom" size="12" size-lg="4">
+        <ion-card class=" ion-no-margin ion-padding-top-4 ion-padding-bottom-4 col-btn">
+          <ion-row>
+            <ion-col size="5" class="ion-no-padding">
+              <ion-img [src]="server + product.product_image_file_path" class="product-img"></ion-img>
+            </ion-col>
+            <ion-col size=7>
+              <ion-card-header>
+                <ion-card-title>{{ product.product_name }}</ion-card-title>
+                <ion-card-title class="total-seller-p"><span class="total-seller"><ion-text color="success">&#x20b1; {{ product.product_price }}</ion-text></span></ion-card-title>
+                
+                <ion-button  fill="outine"  (click)="decrement(product)">
+                  <ion-icon slot="icon-only" color="danger" name="remove-sharp"></ion-icon>
+                </ion-button>
+                <ion-button fill="outine">
+                  <ion-text id="product-{{product.product_id}}">{{product.product_quantity ? product.product_quantity : 1}}</ion-text>
+                </ion-button>
+                <ion-button fill="outine"  (click)="increment(product)">
+                  <ion-icon slot="icon-only"  color="success" name="add-outline" ></ion-icon>
+                </ion-button>
+                
+                <ion-button color="danger" class="ion-margin-top" (click)="addToCart(i,product)">Add to Cart</ion-button>
+              </ion-card-header>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>  
+      
+      
+      <ion-infinite-scroll (ionInfinite)="loadProducts($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading Products..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-row>
+  </ion-grid>
+</ion-content>

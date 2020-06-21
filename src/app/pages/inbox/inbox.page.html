@@ -1,0 +1,60 @@
+<ion-header background="primary">
+  <ion-toolbar>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Inbox
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-grid class="ion-margin-top">
+    <ion-row>
+      <ion-col lass="ion-padding-start ion-padding-end ion-margin-bottom" size="12" size-lg="12">
+        <ion-card class="ion-activatable ripple-parent ion-no-margin ion-padding-top-4 ion-padding-bottom-4 col-btn">
+          <ion-row>
+            <ion-col size="12" class="ion-padding-end">
+              <ion-card-header *ngIf="!isCustomer">
+                <ion-card-title>
+                  Total Reward Points: <ion-text color="success">{{this.authService.total_rp}}</ion-text></ion-card-title>
+              </ion-card-header>
+            </ion-col>
+          </ion-row>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-card>
+      </ion-col>  
+      <ion-col *ngFor="let order of inbox | slice:0:slice; let i=index" class="ion-padding-start ion-padding-end ion-margin-bottom" size="12" size-lg="4">
+        <ion-card class="ion-activatable ripple-parent ion-no-margin ion-padding-top-4 ion-padding-bottom-4 col-btn">
+          <ion-row>
+            <ion-col size="12" class="ion-padding-end">
+              <ion-card-header *ngIf="!isCustomer">
+                <ion-card-title>{{ order.order_status }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <p>Ordered Date: {{order.ordered_date_formatted}}</p>
+                <p>Order ID: {{order.order_id_padded}}</p>
+                <p>City/Municipality: {{order.citymunDesc}}</p>
+                <p>Barangay: {{order.brgyDesc}}</p>
+                <p>Address: {{order.delivery_address}}</p>
+                <p>Distance: {{order.total_km}}km</p>
+                <p>Subtotal: &#x20b1;{{order.subtotal}}</p>
+                <p>DC: &#x20b1;{{order.delivery_charge}}</p>
+                <ion-card-title>Total: <ion-text color="success">&#x20b1;{{order.total}}</ion-text></ion-card-title>
+                <ion-card-title *ngIf="order.order_status_id == 3 || order.order_status_id == 4">
+                  Reward Points: <ion-text color="success">+{{order.reward}}</ion-text></ion-card-title>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-card>
+      </ion-col>  
+      
+      <ion-infinite-scroll (ionInfinite)="loadInbox($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading Orders..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Checkout
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  
+  <ion-card class="ion-no-margin ion-padding-top-4 ion-padding-bottom-4 col-btn">
+    <ion-row>
+      <ion-col size="12" class="ion-padding-end">
+        <ion-card-content>
+          <p>City: {{this.authService.userData.customer.citymunDesc}}</p>
+          <p>Barangay: {{this.authService.userData.customer.brgyDesc}}</p>
+          <p>Delivery Address: {{this.authService.userData.customer.address}}</p>
+          <p>Delivery Charge: &#x20b1; {{this.productService.dc}}</p>
+          <p>Discount: &#x20b1; <ion-text [class.danger]="this.productService.rp_used > 0">{{this.productService.rp_used}}</ion-text></p>
+          <ion-card-title>Total: <ion-text color="success">&#x20b1; {{this.productService.currentTotal - this.productService.rp_used}}</ion-text></ion-card-title>
+          <p *ngIf="this.productService.distance">Distance: {{this.productService.distance.toFixed(2)}}km</p>
+          <ion-button expand="full" color="danger" (click)="setLocation()">Set Delivery Location</ion-button>
+          
+          <p>My Reward Points: {{this.authService.total_rp}}</p>
+          <p>(1 point = 1 Peso Discount)</p>
+          <ion-item>
+            <ion-label position="floating">Use Reward Points</ion-label>
+            <ion-input type="number" [(ngModel)]="this.productService.rp_used" min="1"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Note:</ion-label>
+            <ion-textarea rows="3" cols="20"  [(ngModel)]="user_note" maxlength="250" placeholder="Enter your note here..."></ion-textarea>
+          </ion-item>
+        </ion-card-content>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-grid class="ion-margin-top">
+    <ion-row>
+      <ion-col *ngFor="let product of this.productService.cart" class="ion-padding-start ion-padding-end ion-margin-bottom" size="12" size-lg="4">
+        <ion-card class=" ion-no-margin ion-padding-top-4 ion-padding-bottom-4 col-btn">
+          <ion-row>
+            <ion-col size="5" class="ion-no-padding">
+              <ion-img [src]="server + product.product_image_file_path" class="product-img"></ion-img>
+            </ion-col>
+            <ion-col size=7>
+              <ion-card-header>
+                <ion-card-title>{{ product.product_name }}</ion-card-title>
+                <ion-card-title class="total-seller-p"><span class="total-seller"><ion-text color="success">&#x20b1; {{ product.product_price }}</ion-text></span></ion-card-title>
+              
+                <ion-card-title class="total-seller-p">Qty:{{ product.product_quantity }}</ion-card-title>
+                <ion-card-title class="total-seller-p">Subtotal: <span class="total-seller"><ion-text color="success">&#x20b1; {{ product.product_price  * product.product_quantity }}</ion-text></span></ion-card-title>
+              </ion-card-header>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>  
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar *ngIf="this.productService.distance">
+    <ion-button expand="full" color="danger" size="large" class="ion-margin" (click)="placeOrder()" >Place Order</ion-button>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="this.productService.currentDeliveryLocation == ''">
+    <p class="ion-text-center"><ion-text >Please set the delivery location</ion-text></p>
+  </ion-toolbar>
+</ion-footer>

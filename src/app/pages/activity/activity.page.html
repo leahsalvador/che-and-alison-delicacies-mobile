@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Activity
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Activity</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-toolbar>
+    <ion-tabs>
+      <!-- Tab bar -->
+      <ion-tab-bar slot="top">
+        <ion-tab-button tab="contact">
+          <ion-icon name="call"></ion-icon>
+          <ion-label>Activities</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="settings">
+          <ion-icon name="settings"></ion-icon>
+          <ion-label>Delivery</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-padding-start ion-padding-end" size="12">
+        <ion-text class="ion-text-uppercase">
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

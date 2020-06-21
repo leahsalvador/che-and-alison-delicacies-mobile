@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light" class="ion-text-center ion-text-uppercase">
+      Company Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-padding-start ion-padding-end" size="12" size-md="8">
+        <div class="about-text" style="line-height: 23px; color: #3c3c3c;"[innerHtml]="this.systemConfigService.company_profile"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
